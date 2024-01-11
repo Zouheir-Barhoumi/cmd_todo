@@ -64,3 +64,12 @@ func (t *Todos) Load(filename string) error {
 	}
 	return nil
 }
+
+func (t *Todos) Save(filename string) error {
+	file, err := json.Marshal(t)
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(filename, file, 0644)
+}
